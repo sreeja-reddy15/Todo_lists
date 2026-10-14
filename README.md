@@ -67,3 +67,4 @@ http://127.0.0.1:5500
 
 This is an academic authentication implementation. Passwords are stored as plain text for simplicity. For a production application, use Spring Security, password hashing such as BCrypt, and token/session based authentication.
 "# Todo_lists" 
+"# Todo_lists" 
