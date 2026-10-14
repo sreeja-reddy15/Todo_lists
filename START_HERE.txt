@@ -1,0 +1,23 @@
+SMART TASK MANAGER - START HERE
+
+1. Extract this ZIP.
+2. Open the SmartTaskManager folder in VS Code.
+3. Open a terminal in the backend folder.
+4. Run:
+
+   mvn spring-boot:run
+
+5. Wait for:
+   Tomcat started on port 8080
+
+6. Open frontend/index.html with VS Code Live Server.
+7. Register and login.
+8. Start adding tasks.
+
+Requirements:
+- Java 21
+- Maven
+- VS Code
+- Live Server extension
+
+Do not close the backend terminal while using the application.

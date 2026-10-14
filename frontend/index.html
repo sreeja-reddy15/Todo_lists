@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SmartTask Manager</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="toast"></div>
+
+<section id="authScreen" class="auth-screen">
+    <div class="auth-card">
+        <div class="brand">
+            <div class="brand-mark">✓</div>
+            <div>
+                <h1>SmartTask</h1>
+                <p>Plan. Prioritize. Progress.</p>
+            </div>
+        </div>
+
+        <div id="loginPanel">
+            <h2>Welcome back</h2>
+            <p class="muted">Sign in to manage your tasks and routines.</p>
+
+            <input id="loginUsername" type="text" placeholder="Username">
+            <input id="loginPassword" type="password" placeholder="Password">
+
+            <button class="primary full" onclick="login()">Sign In</button>
+            <p id="loginMessage" class="message"></p>
+
+            <p class="switch">New here?
+                <a href="#" onclick="showRegister(); return false;">Create an account</a>
+            </p>
+        </div>
+
+        <div id="registerPanel" class="hidden">
+            <h2>Create your account</h2>
+            <p class="muted">Set up your personal productivity workspace.</p>
+
+            <input id="registerUsername" type="text" placeholder="Username">
+            <input id="registerPassword" type="password" placeholder="Password">
+
+            <button class="primary full" onclick="register()">Create Account</button>
+            <p id="registerMessage" class="message"></p>
+
+            <p class="switch">Already registered?
+                <a href="#" onclick="showLogin(); return false;">Sign in</a>
+            </p>
+        </div>
+    </div>
+</section>
+
+<section id="appScreen" class="app-screen hidden">
+    <header class="topbar">
+        <div class="brand small">
+            <div class="brand-mark">✓</div>
+            <div>
+                <h1>SmartTask</h1>
+                <p>Productivity Workspace</p>
+            </div>
+        </div>
+
+        <div class="user-area">
+            <span id="welcomeUser"></span>
+            <button class="logout-btn" onclick="logout()">Logout</button>
+        </div>
+    </header>
+
+    <main class="dashboard">
+        <div class="hero">
+            <div>
+                <p class="eyebrow">PERSONAL PRODUCTIVITY</p>
+                <h2 id="greeting">Good evening</h2>
+                <p>Stay focused on what matters today.</p>
+            </div>
+            <div class="date-box" id="todayDate"></div>
+        </div>
+
+        <div class="stats">
+            <div class="stat-card">
+                <span class="stat-label">Total Tasks</span>
+                <strong id="totalCount">0</strong>
+            </div>
+            <div class="stat-card">
+                <span class="stat-label">Pending</span>
+                <strong id="pendingCount">0</strong>
+            </div>
+            <div class="stat-card">
+                <span class="stat-label">Completed</span>
+                <strong id="completedCount">0</strong>
+            </div>
+            <div class="stat-card">
+                <span class="stat-label">Overdue</span>
+                <strong id="overdueCount">0</strong>
+            </div>
+        </div>
+
+        <div class="content-grid">
+            <section class="panel add-panel">
+                <div class="panel-title">
+                    <div>
+                        <h3>Add Task</h3>
+                        <p>Create a task or daily routine.</p>
+                    </div>
+                </div>
+
+                <input id="taskTitle" type="text" placeholder="Task title">
+
+                <textarea id="taskDescription" rows="3" placeholder="Short description (optional)"></textarea>
+
+                <div class="form-row">
+                    <div>
+                        <label>Deadline</label>
+                        <input id="taskDeadline" type="datetime-local">
+                    </div>
+                    <div>
+                        <label>Priority</label>
+                        <select id="taskPriority">
+                            <option value="LOW">Low</option>
+                            <option value="MEDIUM" selected>Medium</option>
+                            <option value="HIGH">High</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div>
+                        <label>Category</label>
+                        <select id="taskCategory">
+                            <option>Academic</option>
+                            <option>Personal</option>
+                            <option>Project</option>
+                            <option>Health</option>
+                            <option>General</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label>Repeat</label>
+                        <select id="taskRecurrence">
+                            <option value="NONE">One time</option>
+                            <option value="DAILY">Daily</option>
+                        </select>
+                    </div>
+                </div>
+
+                <label class="check-row">
+                    <input id="dailyRoutine" type="checkbox">
+                    <span>Mark as a daily routine task</span>
+                </label>
+
+                <button class="primary full" onclick="addTask()">Add to My Tasks</button>
+            </section>
+
+            <section class="panel tasks-panel">
+                <div class="panel-header">
+                    <div>
+                        <h3>My Tasks</h3>
+                        <p id="taskSummary">0 tasks</p>
+                    </div>
+
+                    <select id="filter" onchange="renderTasks()">
+                        <option value="ALL">All</option>
+                        <option value="PENDING">Pending</option>
+                        <option value="COMPLETED">Completed</option>
+                        <option value="ROUTINE">Daily Routine</option>
+                        <option value="OVERDUE">Overdue</option>
+                    </select>
+                </div>
+
+                <div id="taskList" class="task-list"></div>
+                <div id="emptyState" class="empty-state">
+                    <div class="empty-icon">✓</div>
+                    <h4>No tasks yet</h4>
+                    <p>Add your first task using the form.</p>
+                </div>
+            </section>
+        </div>
+    </main>
+</section>
+
+<script src="script.js"></script>
+</body>
+</html>
